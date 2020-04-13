@@ -1,0 +1,17 @@
+extends ./layout/bootstrap.pug
+block content
+
+  h1.mx-auto.mt-5(style='width: 300px;') Login
+
+  if errors
+    each err in errors
+      .alert.alert-danger(role='alert')=err
+
+  form.mx-auto(style='width: 300px;')(action="/auth/login", method='POST')
+    .form-group
+      label(for='email') Email
+      input#name.form-control(type='text', name='email', value=values? values.email:'')
+
+      label(for='password') Password
+      input#phone.form-control(type='password', name='password', value=values? values.password:'')
+    button.btn.btn-primary(type='submit') Login

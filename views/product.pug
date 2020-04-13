@@ -1,0 +1,33 @@
+extends ./layout/common.pug
+block content
+    .container
+        h1.mt-5 Mặt hàng
+        span #{result} mặt hàng đã chọn
+    .container
+        .row
+            each product in products
+                    .card.m-4(style='width: 14rem; height: 24rem;')
+                        .card(style='width: 14rem; height: 14rem;')
+                            img.card-img-top(src=product.image, alt='Card image cap',style='width: 100%; height: 100%;')
+                        .card-body
+                            h5.card-title(style='font-size: 1rem;') #{product.name}
+                            p.card-text(style='font-size: 0.8rem;') #{product.age} Tuổi
+                            //- a.btn.btn-primary(href=`/products/cart/${product.id}?page=${curPage.number}`) Chọn
+                            a.btn.btn-primary(href=`/products/cart/${product.id}`) Chọn
+
+    nav.mt-4
+        ul.pagination.justify-content-end
+            //- - var checkTop = curPage==1? 'disabled':''
+            li(class=`page-item ${checkTop}`)
+                a.page-link(href='/products?page=1') &laquo;           
+            //- - var checkPre = curPage == 1 ? 'sr-only' : ''
+            li(class=`page-item ${checkPre}`)
+                a.page-link(href=prePage.url) #{prePage.number}
+            li.page-item.active
+                span.page-link #{curPage.number}
+            //- - var checkNext = curPage == endPage.number ? 'sr-only' : ''
+            li(class=`page-item ${checkNext}`)
+                a.page-link(href=nextPage.url) #{nextPage.number}
+            //- - var checkEndPage = curPage == endPage.number ? 'disabled' : ''
+            li(class=`page-item ${checkEnd}`)
+                a.page-link(href=endPage.url) &raquo;

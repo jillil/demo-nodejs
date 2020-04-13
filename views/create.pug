@@ -1,0 +1,21 @@
+extends ./layout/common.pug
+block content
+  .container
+    h1.mx-auto.mt-5(style='width: 300px;') Tạo thành viên
+
+    if errors
+      each err in errors
+        .alert.alert-danger(role='alert')=err
+
+    form.mx-auto.mt-5(style='width: 300px;')(action="/user/create", method='POST', enctype="multipart/form-data")
+      .form-group
+        label(for='name') Tên
+        input#name.form-control(type='text', name='name', value=values? values.name:'')
+      .form-group
+        label(for='phone') Điện thoại
+        input#phone.form-control(type='text', name='phone', value=values? values.phone:'')
+      .form-group
+        label(for='avatar') Tải ảnh
+        input#avatar.form-control-file(type='file' name='avatar')
+
+      button.btn.btn-primary(type='submit' style='width: 5rem;') Tạo
